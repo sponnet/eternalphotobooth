@@ -1,0 +1,51 @@
+.container {
+  margin: 0.5rem;
+  width: 100%;
+}
+
+.title {
+  padding-bottom: 0.25em;
+  padding-bottom: 0;
+}
+
+.swipeContainer {
+  padding: 1em;
+}
+
+.swipe {
+    min-height: 100vh;
+  /* display: inline-block; */
+  border: 2px solid gray;
+  padding: 5px;
+}
+
+.hollow {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.float-right {
+  float: right !important;
+}
+
+.float-left {
+  float: left !important;
+}
+
+
+.hero.is-info {
+    background-repeat: no-repeat;
+    /* -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; */
+  }
+  .hero .nav, .hero.is-success .nav {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .hero .subtitle {
+    padding: 3rem 0;
+    line-height: 1.5;
+  }

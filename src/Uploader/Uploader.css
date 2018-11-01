@@ -1,0 +1,36 @@
+.bottompadding {
+  padding: 0 0 1.5rem 0;
+}
+.uppy-Dashboard {
+  border: 2px dashed #d9dbdb;
+  border-radius: 5px;
+  /* width: 100%;
+    height: 500px; */
+}
+
+.title-image {
+  max-width: 228px;
+  max-height: 152px;
+  overflow: hidden;
+  object-fit: scale-down;
+}
+
+.card {
+  /* width: 228px; */
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  margin-bottom: 4rem;
+}
+
+.card[data-count]:after {
+  padding: 0 1rem;
+  display: inline-block;
+  position: absolute;
+  top: 1rem;
+  right: -0.25rem;
+  color: #fff;
+  background-color: #3f51b5;
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12),
+    0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  content: attr(data-count);
+}
