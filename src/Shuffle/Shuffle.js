@@ -7,7 +7,6 @@ import Swipeable from "react-swipeable";
 import { generate } from "ethjs-account";
 import HttpProvider from "ethjs-provider-http";
 import Eth from "ethjs";
-import Ipfs from "ipfs";
 
 const IMG_WIDTH = "342px";
 const IMG_HEIGHT = "249px";
@@ -32,87 +31,6 @@ class Shuffle extends Component {
       this.locationChanged(location);
     });
     this.locationChanged(this.props.location);
-  
-    // const ipfs = new Ipfs({
-    //   repo: "/orbitdb/examples/browser/new/ipfs/0.27.3",
-    //   start: true,
-    //   EXPERIMENTAL: {
-    //     pubsub: true
-    //   },
-    //   config: {
-    //     Addresses: {
-    //       Swarm: [
-    //         // Use IPFS dev signal server
-    //         // '/dns4/star-signal.cloud.ipfs.team/wss/p2p-webrtc-star',
-    //         "/dns4/ws-star.discovery.libp2p.io/tcp/443/wss/p2p-websocket-star"
-    //         // Use local signal server
-    //         // '/ip4/0.0.0.0/tcp/9090/wss/p2p-webrtc-star',
-    //       ]
-    //     }
-    //   }
-    // });
-
-    // ipfs.on("error", e => {
-    //   console.log("ipfs error -- ", e);
-    // });
-    // ipfs.on("ready", () => {
-    //   console.log("ipfs started  -- ");
-    //   //openButton.disabled = false;
-    //   //createButton.disabled = false;
-    //   //statusElm.innerHTML = "IPFS Started";
-    //   //orbitdb = new OrbitDB(ipfs)
-    //  // const orbitdb = new OrbitDB(ipfs);
-
-    //   //   orbitdb.open(name, {
-    //   //     // If database doesn't exist, create it
-    //   //     create: true,
-    //   //     overwrite: true,
-    //   //     // Load only the local version of the database,
-    //   //     // don't load the latest from the network yet
-    //   //     localOnly: false,
-    //   //     type: type,
-    //   //     // If "Public" flag is set, allow anyone to write to the database,
-    //   //     // otherwise only the creator of the database can write
-    //   //     write: publicAccess ? ['*'] : [],
-    //   //   })
-
-    //   //const db = await orbitdb.log("hello");
-    // //   orbitdb
-    // //     .open("ephotobooth", {
-    // //       create: true,
-    // //       type: "eventlog",
-    // //       overwrite: true,
-    // //       write: ["*"]
-    // //     })
-    // //     .then(db => {
-    // //       console.log("orbitDB added eventlog thing");
-
-    // //       db.events.on("ready", () => {
-    // //         console.log("db is ready");
-    // //       });
-
-    // //       // Load locally persisted database
-    // //       db.load().then(() => {
-    // //         setInterval(() => {
-    // //           console.log("adding logline");
-    // //           db.add({ avatar: "Quaak", userId: 12234234234234 }, () => {
-    // //             console.log("orbitDB added logline");
-    // //           });
-    // //         }, 2 * 1000);
-    // //       });
-    // //     });
-    // });
-
-    // const ipfs = IpfsApi({
-    //     host: "ipfs.web3.party",
-    //     port: 5001,
-    //     protocol: "https"
-    //   });
-    //   const orbitdb = new OrbitDB(ipfs);
-    //   //const db = await orbitdb.log("hello");
-    //   orbitdb.eventlog("123456678", { overwrite: true }).then(db => {
-    //     db.add({ avatar: "Quaak", userId: 1234 });
-    //   });
   }
 
   componentWillUnmount() {
