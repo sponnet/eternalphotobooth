@@ -13,4 +13,11 @@
 * create a prediction market using these votes
 * distribute bounties by collecting votes
 
+# Install / use
+
+```yarn```
+
+```yarn start```
+
+
 
