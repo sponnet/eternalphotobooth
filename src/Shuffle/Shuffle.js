@@ -4,9 +4,11 @@ import config from "react-global-configuration";
 import "react-image-gallery/styles/css/image-gallery.css";
 import axios from "axios";
 import Swipeable from "react-swipeable";
-import { generate } from "ethjs-account";
+import { generate, getAddress,publicToAddress } from "ethjs-account";
 import HttpProvider from "ethjs-provider-http";
 import Eth from "ethjs";
+import {publicKeyCreate,sign,verify,publicKeyConvert} from "secp256k1";
+import sha256 from "js-sha256";
 
 const IMG_WIDTH = "342px";
 const IMG_HEIGHT = "249px";
@@ -37,6 +39,28 @@ class Shuffle extends Component {
     this.unlisten();
   }
 
+  signMsg(msg, key) {
+    const privKey = Buffer.from(key.privateKey.substring(2), "hex");
+
+    // get the public key in a compressed format
+    const pubKey =publicKeyCreate(privKey);
+
+    // sign the message
+    const msgHash = Buffer.from(sha256(new Buffer(msg, "hex")), "hex");
+
+    const sigObj = sign(msgHash, privKey);
+
+    // verify the signature
+    console.log(verify(msgHash, sigObj.signature, pubKey));
+    console.log(
+      `pubkey ${publicKeyConvert(pubKey, true).toString("hex")}`
+    );
+    debugger;
+    let p = key.publicKey.substring(2);
+    let a = publicToAddress(Buffer.from(p), "hex");
+    console.log(`pubkey ${a}`);
+  }
+
   locationChanged(location) {
     if (location && location.search) {
       this.hash = location.search.substring(1);
@@ -44,7 +68,7 @@ class Shuffle extends Component {
       if (localStorage.getItem("key-" + this.hash)) {
         this.gallerykey = JSON.parse(localStorage.getItem("key-" + this.hash));
       } else {
-        debugger;
+        //debugger;
         const validChars =
           "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         let array = new Uint8Array(40);
@@ -57,6 +81,7 @@ class Shuffle extends Component {
           JSON.stringify(this.gallerykey)
         );
       }
+      this.signMsg("yo", this.gallerykey);
       this.setState({
         hash: this.hash,
         images: null,
@@ -77,7 +102,6 @@ class Shuffle extends Component {
     } else {
       this.setState({ images: null, hash: null });
     }
-
   }
 
   onSwiped(direction) {
@@ -216,15 +240,14 @@ class Shuffle extends Component {
                       </div>
                     </Swipeable>
                   )}
-                  {this.state.submitnow === true &&
-                    this.state.votesubmission && (
-                      <div>
-                        <h1 className="title">Thanks for voting</h1>
-                        <div>{this.state.votes.upvotes.length} upvotes</div>
-                        <div>{this.state.votes.downvotes.length} downvotes</div>
-                        <button>Submit your votes</button>
-                      </div>
-                    )}
+                  {this.state.submitnow === true && this.state.votesubmission && (
+                    <div>
+                      <h1 className="title">Thanks for voting</h1>
+                      <div>{this.state.votes.upvotes.length} upvotes</div>
+                      <div>{this.state.votes.downvotes.length} downvotes</div>
+                      <button>Submit your votes</button>
+                    </div>
+                  )}
                   {this.state.submitnow === true &&
                     !this.state.votesubmission && (
                       <div>Processing your votes</div>
